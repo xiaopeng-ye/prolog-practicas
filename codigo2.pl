@@ -1,7 +1,7 @@
 :- module(_, _, [classic, assertions, regtypes]).
 alumno_prode('Ye', '', 'Xiao Peng', 'A180321').
 
-:- doc(title, "Compresión de secuencias").
+:- doc(title, "Compresi@'{o}n de secuencias").
 :- doc(author, "Xiao Peng Ye, A180321").
 :- doc(usage, "use_module('codigo.pl')").
 
@@ -20,14 +20,15 @@ comprimir(Inicial, Comprimida) :-
 :- dynamic memo/2.
 
 :- pred compresion_recursiva(Inicial, Comprimida)
-# "Predicado auxiliar de @var{compresion}. @inludedef{compresion_recursiva/2}".
+# "Predicado auxiliar de compresion. @includedef{compresion_recursiva/2}".
+
 compresion_recursiva(Inicial, Comprimida) :-
     mejor_compresion_memo(Inicial, Comprimida), !.
 
 compresion_recursiva(Inicial, Inicial).
 
 :- pred limpia_memo
-# "Borrar todos los predicados de memo de la memoria din@'{a}mica. @includedef{limpia_memo}".
+# "Borrar todos los predicados de memo de la memoria din@'{a}mica. @includedef{limpia_memo/0}".
 
 limpia_memo :-
     retractall(memo(_, _)).
@@ -53,7 +54,7 @@ mejor_compresion(Inicial, Comprimida) :-
 :- test mejor_compresion(Inicial, Comprimida) : (Inicial=[a, a, a, a, b, b, b, c, c, c, c, a, a, a, a, b, b, b, c, c, c, c], Comprimida= ['(', a, 4, b, 3, c, 4, ')', 2]) + not_fails.
 
 :- pred mejor_compresion_memo(Inicial, Comprimida)
-# "Predicado auxiliar para salvar las sentencias comprimidas ya conocidas en la memoria din@'{a}mica, evitando as@'{i} duplicar el trabajo. includedef{mejor_compresion_memo/2}".
+# "Predicado auxiliar para salvar las sentencias comprimidas ya conocidas en la memoria din@'{a}mica, evitando as@'{i} duplicar el trabajo. @includedef{mejor_compresion_memo/2}".
 
 mejor_compresion_memo(Inicial, Comprimida) :- memo(Inicial, Comprimida), !.
 mejor_compresion_memo(Inicial, Comprimida) :-
@@ -61,7 +62,7 @@ mejor_compresion_memo(Inicial, Comprimida) :-
     assert(memo(Inicial, Comprimida)).
 
 :- pred partir(Todo, Parte1, Parte2)
-# "@var{Todo} es la lista formado al concatenar las listas no vacias @var{Parte1] y @var{Parte2}. @includedef{partir/3}".
+# "@var{Todo} es la lista formado al concatenar las listas no vacias @var{Parte1} y @var{Parte2}. @includedef{partir/3}".
 
 partir(Todo, Parte1, Parte2) :-
     append(Parte1, Parte2, Todo),
@@ -100,7 +101,7 @@ se_repite(Cs1, Parte, Num0, Num1) :-
 :- test se_repite(Cs, Parte, Num0, Num) : (Cs=[], Parte= "vacio", Num0=0) => (Num=0) + not_fails.
 
 :- pred repeticion(Inicial, Comprimida)
-# "La sentencia @var{Comprimida} es el resultado de comprimir la sentencia @var{Inicial} por la repetici@'{o}n de su subsecuencia. includedef{repeticion/2}".
+# "La sentencia @var{Comprimida} es el resultado de comprimir la sentencia @var{Inicial} por la repetici@'{o}n de su subsecuencia. @includedef{repeticion/2}".
 
 repeticion(Inicial, Comprimida) :-
     partir(Inicial, Parte, _),
@@ -113,7 +114,7 @@ repeticion(Inicial, Comprimida) :-
 :- test repeticion(Inicial, Comprimida) : (Inicial= "safjfjerw") + fails.
 
 :- pred division(Incial, Comprimida)
-# "La sentencia @var{Comprimida} es el resultado de comprimir la sentencia @var{Inicial} por divisi@'{o}n. includedef{division/2}".
+# "La sentencia @var{Comprimida} es el resultado de comprimir la sentencia @var{Inicial} por divisi@'{o}n. @includedef{division/2}".
 
 division(Inicial, Comprimida) :-
     partir(Inicial, Parte1, Parte2),
