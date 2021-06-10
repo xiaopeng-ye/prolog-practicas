@@ -33,11 +33,20 @@ Como segundo objetivo, dadoN, y los números de Peano consecu-
 tivos de 1 aN^2 , colocarlos en un cuadrado de tamañoN×Ntal que todas las filas
 sumen lo mismo. Para ello programar (pudiéndose usar algunos predicados del punto
 anterior) el siguiente predicado:
-
+```prolog
+square_lists(N,SQ,S)
 ```
-square_lists(N,SQ,S), tal queNes el número,SQel cuadrado (representado
+, tal queNes el número,SQel cuadrado (representado
 comoNlistas deNelementos cada una), ySel valor que suman las filas.
-Por ejemplo,square_lists(s(s(0)),SQ,S)devolveríaS = s(s(s(s(s(0))))),
+Por ejemplo,
+
+```prolog
+square_lists(s(s(0)),SQ,S)
+```
+devolvería
+
+```prolog
+S = s(s(s(s(s(0))))),
 SQ = [ [s(s(s(s(0)))), s(0)], [s(s(s(0))), s(s(0))] ].
 ```
 
@@ -105,10 +114,10 @@ A continuación os ofrecemos una guía para realizar la práctica de forma gradu
           limpia_memo ,
           compresion_recursiva(Inicial,Comprimida).
 
-```
+```prolog
 limpia_memo.
 ```
-```
+```prolog
 compresion_recursiva(Inicial,Inicial).
 ```
 
@@ -129,17 +138,17 @@ llamemos de forma recursiva (sin limpiar la base de datos de memorización).
        R = [’(’,a,b,c,’)’,3]? ;
        no
 
-```
+```prolog
 ?- parentesis([a,b],2,R).
 R = [’(’,a,b,’)’,2]? ;
 no
 ```
-```
+```prolog
 ?- parentesis([a],2,R).
 R = [a,2]? ;
 ```
 
-```
+```prolog
 no
 ```
 4. Implementar un predicadose_repite/4con cabecerase_repite(Cs,Parte,Num0,Num),
@@ -150,19 +159,19 @@ no
           R = 1? ;
           no
 
-```
+```prolog
 % [a,b,c,a,b,c,a,b,c] se obtiene repitiendo [a,b,c] 3 veces
 ?- se_repite([a,b,c,a,b,c,a,b,c],[a,b,c],0,R).
 R = 3? ;
 no
 ```
-```
+```prolog
 % [a,b,c,a,c,a,b,c] no se puede obtener mediante repeticiones
 % de [a,b,c].
 ?- se_repite([a,b,c,a,c,a,b,c],[a,b,c],0,R).
 no
 ```
-```
+```prolog
 % [] se obtiene repitiendo cero veces [a,b,c]
 ?- se_repite([],[a,b,c],0,R).
 R = 0? ;
@@ -190,7 +199,7 @@ R = [a,7]? ;
 no
 
 
-```
+```prolog
 ?- repeticion([a,b,a,b,a,b],R).
 R = [’(’,a,b,’)’,3]? ;
 no
@@ -240,11 +249,11 @@ Esta será una solución óptima y además eficiente:
     para limpiarlos y cambiamoscompresion_recursiva/2.
        :- dynamic memo/2.
 
-```
+```prolog
 compresion_recursiva(Inicial,Comprimida) :-
 mejor_compresion_memo(Inicial,Comprimida).
 ```
-```
+```prolog
 limpia_memo :-
 retractall(memo(_,_)).
 ```
